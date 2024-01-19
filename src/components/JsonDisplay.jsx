@@ -34,22 +34,8 @@ const JsonDisplay = () => {
     setPage((prevPage) => Math.max(prevPage - 1, 1));
   };
 
-  const isNextDisabled =
-    isFetching ||
-    endIndex >= data.Timeline.length ||
-    data.Timeline.length === 0;
+  const isNextDisabled = isFetching || endIndex >= data.Timeline.length;
   const isPrevDisabled = isFetching || page === 1;
-
-  // ...
-
-  <div>
-    <button className="mx-2" onClick={handlePrevPage} disabled={isPrevDisabled}>
-      Previous
-    </button>
-    <button onClick={handleNextPage} disabled={isNextDisabled}>
-      Next
-    </button>
-  </div>;
 
   //Accessing Body data
   if (!data || !data.Body || data.Body.length === 0) {
