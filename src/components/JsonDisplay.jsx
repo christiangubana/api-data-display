@@ -28,6 +28,14 @@ const JsonDisplay = () => {
   const endIndex = startIndex + itemsPerPage;
   const displayedItems = data.Timeline.slice(startIndex, endIndex);
 
+  const handleNextPage = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    setPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
   //Accessing Body data
   if (!data || !data.Body || data.Body.length === 0) {
     return "Data not available.";
@@ -70,14 +78,17 @@ const JsonDisplay = () => {
           </div>
         );
       })}
-      {data.Timeline.length > endIndex && (
-        <button
-          onClick={() => setPage((prevPage) => prevPage + 1)}
-          disabled={isFetching}
-        >
-          Load more
+      <div>
+        <button onClick={handlePrevPage} disabled={isFetching || page === 1}>
+          Previous
         </button>
-      )}
+        <button
+          onClick={handleNextPage}
+          disabled={isFetching || endIndex >= data.Timeline.length}
+        >
+          Next
+        </button>
+      </div>
     </>
   );
 };
