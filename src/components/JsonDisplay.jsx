@@ -14,8 +14,6 @@ const JsonDisplay = () => {
       ).then((res) => res.json()),
   });
 
-  console.log(data);
-
   if (isFetching) return "Loading...";
 
   if (error) return "An error has occurred: " + error.message;
@@ -35,6 +33,23 @@ const JsonDisplay = () => {
   const handlePrevPage = () => {
     setPage((prevPage) => Math.max(prevPage - 1, 1));
   };
+
+  const isNextDisabled =
+    isFetching ||
+    endIndex >= data.Timeline.length ||
+    data.Timeline.length === 0;
+  const isPrevDisabled = isFetching || page === 1;
+
+  // ...
+
+  <div>
+    <button className="mx-2" onClick={handlePrevPage} disabled={isPrevDisabled}>
+      Previous
+    </button>
+    <button onClick={handleNextPage} disabled={isNextDisabled}>
+      Next
+    </button>
+  </div>;
 
   //Accessing Body data
   if (!data || !data.Body || data.Body.length === 0) {
@@ -79,12 +94,18 @@ const JsonDisplay = () => {
         );
       })}
       <div>
-        <button onClick={handlePrevPage} disabled={isFetching || page === 1}>
+        <button
+          className="mx-2 bg-sky-500 disabled:opacity-20"
+          tabindex="-1"
+          onClick={handlePrevPage}
+          disabled={isPrevDisabled}
+        >
           Previous
         </button>
         <button
+          className="bg-sky-500 disabled:opacity-20"
           onClick={handleNextPage}
-          disabled={isFetching || endIndex >= data.Timeline.length}
+          disabled={isNextDisabled}
         >
           Next
         </button>
