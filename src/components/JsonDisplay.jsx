@@ -1,35 +1,42 @@
 // src/components/JsonDisplay.js
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 const JsonDisplay = () => {
-  const { isPending, error, data } = useQuery({
-    queryKey: ["arthufrostData"],
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 2;
+
+  const { isFetching, error, data } = useQuery({
+    queryKey: ["arthufrostData", page],
     queryFn: () =>
-      fetch("https://arthurfrost.qflo.co.za/php/getTimeline.php").then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://arthurfrost.qflo.co.za/php/getTimeline.php?page=${page}`
+      ).then((res) => res.json()),
   });
+
   console.log(data);
-  if (isPending) return "Loading...";
+
+  if (isFetching) return "Loading...";
 
   if (error) return "An error has occurred: " + error.message;
 
+  if (!data || !data.Timeline) {
+    return "Data not available.";
+  }
+
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const displayedItems = data.Timeline.slice(startIndex, endIndex);
+
+  //Accessing Body data
   if (!data || !data.Body || data.Body.length === 0) {
     return "Data not available.";
   }
 
-  if (!data || !data.Timeline || data.Timeline.length === 0) {
-    return "Timeline data not available.";
-  }
-
-  // Accessing properties inside the "Timeline" array
-  const timelineData = data.Timeline;
-
   return (
     <>
       {/* <div dangerouslySetInnerHTML={{ __html: data.Body[0].About }}></div> */}
-      {timelineData.map((item) => {
+      {displayedItems.map((item) => {
         // Construct the full URL for the image
         const imageUrl = `https://arthurfrost.qflo.co.za/${item.Image}`;
         const audioUrl = `https://arthurfrost.qflo.co.za/${item.Audio}`;
@@ -63,6 +70,14 @@ const JsonDisplay = () => {
           </div>
         );
       })}
+      {data.Timeline.length > endIndex && (
+        <button
+          onClick={() => setPage((prevPage) => prevPage + 1)}
+          disabled={isFetching}
+        >
+          Load more
+        </button>
+      )}
     </>
   );
 };
