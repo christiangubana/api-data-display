@@ -3,10 +3,11 @@
 }
 audio {
   display: block;
-  height: 30px;
+  height: 40px;
   width: 100%;
   max-width: 300px;
   margin: 0 auto;
+  padding-top: 1rem;
 }
 
 @keyframes logo-spin {
