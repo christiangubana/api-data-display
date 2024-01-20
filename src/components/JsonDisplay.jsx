@@ -44,9 +44,9 @@ const JsonDisplay = () => {
   }
 
   return (
-    <>
+    <div className="container">
       <div
-        className="p-4"
+        className="p-4 text-slate-600	text-sm"
         dangerouslySetInnerHTML={{ __html: data.Body[0].About }}
       ></div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -109,7 +109,7 @@ const JsonDisplay = () => {
           Next
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
