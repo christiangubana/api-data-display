@@ -52,18 +52,18 @@ const JsonDisplay = () => {
           const audioUrl = `https://arthurfrost.qflo.co.za/${item.Audio}`;
           const iconUrl = `https://arthurfrost.qflo.co.za/${item.Icon}`;
           return (
-            <div className="flex bg-purple-700 p-4 rounded-lg">
+            <div className="flex bg-gradient-to-r from-green-900 to-blue-500 p-4 rounded-lg">
               <div className="flex flex-col w-2/3 pr-4 bg">
                 <p className="text-md font-black mb-2 text-gray-50">
-                  Title: {item.Title}
+                  {item.Title}
                 </p>
-                <p className="text-lg font-light leading-5 text-gray-300">
+                <p className="text-sm font-light text-gray-300">
                   Category: {item.Category}
                 </p>
-                <p className="text-lg font-light leading-5 text-gray-300">
+                <p className="text-sm font-light text-gray-300">
                   Create: {item.CreateDate}
                 </p>
-                <p className="text-lg font-light leading-5 text-gray-300">
+                <p className="text-sm font-light text-gray-300">
                   Episode: {item.Episode}
                 </p>
                 <div className="flex h-full items-end">
