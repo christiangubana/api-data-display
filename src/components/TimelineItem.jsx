@@ -1,10 +1,11 @@
 // src/components/TimelineItem.js
 import React from "react";
+import { MEDI_API_BASE_URL } from "../api";
 
 const TimelineItem = ({ item }) => {
-  const imageUrl = `https://arthurfrost.qflo.co.za/${item.Image}`;
-  const audioUrl = `https://arthurfrost.qflo.co.za/${item.Audio}`;
-  const iconUrl = `https://arthurfrost.qflo.co.za/${item.Icon}`;
+  const imageUrl = `${MEDI_API_BASE_URL}/${item.Image}`;
+  const audioUrl = `${MEDI_API_BASE_URL}/${item.Audio}`;
+  const iconUrl = `${MEDI_API_BASE_URL}/${item.Icon}`;
 
   return (
     <div className="flex bg-gradient-to-r from-green-900 to-blue-500 p-4 rounded-lg">
