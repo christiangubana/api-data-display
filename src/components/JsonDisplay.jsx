@@ -32,7 +32,7 @@ const JsonDisplay = () => {
   };
 
   const handlePrevPage = () => {
-    setPage((prevPage) => Math.max(prevPage - 1, 1));
+    setPage((prevPage) => prevPage - 1, 1);
   };
 
   const isNextDisabled = isFetching || endIndex >= data.Timeline.length;
