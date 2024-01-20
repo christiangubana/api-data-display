@@ -1,10 +1,11 @@
 // src/components/JsonDisplay.js
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "./LoadingSpinner";
 
 const JsonDisplay = () => {
   const [page, setPage] = useState(1);
-  const itemsPerPage = 2;
+  const itemsPerPage = 6;
 
   const { isFetching, error, data } = useQuery({
     queryKey: ["arthufrostData", page],
@@ -14,7 +15,7 @@ const JsonDisplay = () => {
       ).then((res) => res.json()),
   });
 
-  if (isFetching) return "Loading...";
+  if (isFetching) return <LoadingSpinner />;
 
   if (error) return "An error has occurred: " + error.message;
 
@@ -45,44 +46,53 @@ const JsonDisplay = () => {
   return (
     <>
       {/* <div dangerouslySetInnerHTML={{ __html: data.Body[0].About }}></div> */}
-      {displayedItems.map((item) => {
-        // Construct the full URL for the image
-        const imageUrl = `https://arthurfrost.qflo.co.za/${item.Image}`;
-        const audioUrl = `https://arthurfrost.qflo.co.za/${item.Audio}`;
-        return (
-          <div
-            key={item.Id}
-            className="flex rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 md:max-w-xl px-4 mx-4 my-4"
-          >
-            {/* Display the image */}
-            <img
-              className="h-32 w-32 rounded-lg shadow-lg object-cover"
-              src={imageUrl}
-              alt="image"
-            />
-            <div className="flex flex-col justify-start p-6">
-              <h5 className="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
-                {item.Title}
-              </h5>
-              <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                <p>{item.Episode}</p>
-              </p>
-              <p className="text-xs text-neutral-500 dark:text-neutral-300">
-                {item.Category}
-              </p>
-              {/* Display the audio element */}
-              <audio controls>
-                <source src={audioUrl} type="audio/mp3" />
-                Your browser does not support the audio element.
-              </audio>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {displayedItems.map((item) => {
+          const imageUrl = `https://arthurfrost.qflo.co.za/${item.Image}`;
+          const audioUrl = `https://arthurfrost.qflo.co.za/${item.Audio}`;
+          const iconUrl = `https://arthurfrost.qflo.co.za/${item.Icon}`;
+          return (
+            <div className="flex bg-purple-700 p-4 rounded-lg">
+              <div className="flex flex-col w-2/3 pr-4 bg">
+                <p className="text-md font-black mb-2 text-gray-50">
+                  Title: {item.Title}
+                </p>
+                <p className="text-lg font-light leading-5 text-gray-300">
+                  Category: {item.Category}
+                </p>
+                <p className="text-lg font-light leading-5 text-gray-300">
+                  Create: {item.CreateDate}
+                </p>
+                <p className="text-lg font-light leading-5 text-gray-300">
+                  Episode: {item.Episode}
+                </p>
+                <div className="flex h-full items-end">
+                  <audio controls>
+                    <source src={audioUrl} type="audio/mp3" />
+                    Your browser does not support the audio element.
+                  </audio>
+                </div>
+              </div>
+              <div className="w-1/4">
+                <img
+                  className="w-full hover:animate-bounce rounded-lg"
+                  src={imageUrl}
+                  alt="image"
+                />
+                <img
+                  className="w-full hover:animate-bounce rounded-lg my-2"
+                  src={iconUrl}
+                  alt="icon"
+                />
+              </div>
             </div>
-          </div>
-        );
-      })}
-      <div>
+          );
+        })}
+      </div>
+      <div className="mt-4">
         <button
           className="mx-2 bg-sky-500 disabled:opacity-20"
-          tabindex="-1"
+          tabIndex="-1"
           onClick={handlePrevPage}
           disabled={isPrevDisabled}
         >

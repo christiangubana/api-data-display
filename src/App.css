@@ -3,7 +3,13 @@
   padding: 2rem;
   text-align: center;
 }
-
+audio {
+  display: block;
+  height: 30px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -17,12 +23,4 @@
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
