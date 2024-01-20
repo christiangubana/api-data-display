@@ -5,4 +5,9 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "/api-data-display/",
+  // resolve: {
+  //   alias: {
+  //     "@": Path2D.resolve(__dirname, "./src"),
+  //   },
+  // },
 });
