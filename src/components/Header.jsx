@@ -6,7 +6,7 @@ const Header = () => {
     <header className="bg-gray-800 p-4 text-white">
       <div className="container mx-auto flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">CRG Assessment</h1>
+          <h1 className="text-2xl font-bold">CRG - Assessment</h1>
         </div>
         <nav className="hidden sm:flex space-x-4">
           {/* Adjust visibility for small screens */}
