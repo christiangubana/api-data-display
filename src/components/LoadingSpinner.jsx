@@ -2,11 +2,7 @@ import React from "react";
 
 const LoadingSpinner = () => {
   return (
-    <button
-      disabled
-      type="button"
-      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center"
-    >
+    <button disabled type="button" class="top-0 w-full bg-opacity-70">
       <svg
         aria-hidden="true"
         role="status"

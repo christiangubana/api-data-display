@@ -1,7 +1,5 @@
 #root {
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
 }
 audio {
   display: block;
@@ -10,6 +8,7 @@ audio {
   max-width: 300px;
   margin: 0 auto;
 }
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
