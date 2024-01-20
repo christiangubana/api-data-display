@@ -5,6 +5,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import BodyDisplay from "./BodyDisplay";
 import TimelineDisplay from "./TimelineDisplay";
 import Pagination from "./Pagination";
+import { API_BASE_URL } from "../api";
 
 const JsonDisplay = ({ page, setPage }) => {
   const itemsPerPage = 6;
@@ -12,9 +13,7 @@ const JsonDisplay = ({ page, setPage }) => {
   const { isFetching, error, data } = useQuery({
     queryKey: ["arthufrostData", page],
     queryFn: () =>
-      fetch(
-        `https://arthurfrost.qflo.co.za/php/getTimeline.php?page=${page}`
-      ).then((res) => res.json()),
+      fetch(`${API_BASE_URL}?page=${page}`).then((res) => res.json()),
   });
 
   if (isFetching) return <LoadingSpinner />;
