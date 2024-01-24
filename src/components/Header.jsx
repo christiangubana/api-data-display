@@ -8,8 +8,8 @@ const Header = () => {
         <div>
           <h1 className="text-2xl font-bold">CRG - Assessment</h1>
         </div>
-        <nav className="hidden sm:flex space-x-4">
-          {/* Adjust visibility for small screens */}
+        {/* <nav className="hidden sm:flex space-x-4">
+            // Placholder buttons - Don't expect these to function
           <a href="#" className="hover:text-gray-300">
             Home
           </a>
@@ -19,7 +19,7 @@ const Header = () => {
           <a href="#" className="hover:text-gray-300">
             Contact
           </a>
-        </nav>
+        </nav> */}
       </div>
     </header>
   );

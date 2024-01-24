@@ -4,7 +4,7 @@ const LoadingSpinner = () => {
   return (
     <button
       type="button"
-      class="flex justify-center items-center 
+      className="flex justify-center items-center 
        bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200
         text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg max-w-md"
     >
@@ -12,7 +12,7 @@ const LoadingSpinner = () => {
         width="20"
         height="20"
         fill="currentColor"
-        class="mr-2 animate-spin"
+        className="mr-2 animate-spin"
         viewBox="0 0 1792 1792"
         xmlns="http://www.w3.org/2000/svg"
       >
